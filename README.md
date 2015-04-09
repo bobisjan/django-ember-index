@@ -1,5 +1,7 @@
 # Django Ember Index
 
+[![Build Status](https://travis-ci.org/bobisjan/django-ember-index.svg?branch=master)](https://travis-ci.org/bobisjan/django-ember-index) [![Coverage Status](https://coveralls.io/repos/bobisjan/django-ember-index/badge.svg)](https://coveralls.io/r/bobisjan/django-ember-index)
+
 A Django app to serve an [Ember](http://emberjs.com) index files deployed with [ember-cli-deploy](https://github.com/ember-cli/ember-cli-deploy).
 
 ## Installation
