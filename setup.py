@@ -16,7 +16,7 @@ setup(
     license='MIT License',
     description='A Django app to serve an Ember index files.',
     long_description=README,
-    url='https://github.com/bobisjan/django-ember-index',
+    url='http://bobisjan.github.io/django-ember-index',
     author='Jan Bobisud',
     author_email='me@bobisjan.com',
     classifiers=[
