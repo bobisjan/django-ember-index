@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Django-ember-index by bobisjan</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Django-ember-index</h1>
+        <p>A Django app to serve an Ember index files</p>
+
+        <p class="view"><a href="https://github.com/bobisjan/django-ember-index">View the Project on GitHub <small>bobisjan/django-ember-index</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/bobisjan/django-ember-index/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/bobisjan/django-ember-index/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/bobisjan/django-ember-index">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="django-ember-index" class="anchor" href="#django-ember-index" aria-hidden="true"><span class="octicon octicon-link"></span></a>Django Ember Index</h1>
+
+<p>A Django app to serve an <a href="http://emberjs.com">Ember</a> index files deployed with <a href="https://github.com/ember-cli/ember-cli-deploy">ember-cli-deploy</a>.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<ol>
+<li><p>Install application using <code>$ pip install django-ember-index</code>.</p></li>
+<li>
+<p>Add <code>ember_index</code> to your <code>INSTALLED_APPS</code> setting like this:</p>
+
+<div class="highlight highlight-python"><pre>INSTALLED_APPS <span class="pl-k">=</span> (
+     ...
+     <span class="pl-s"><span class="pl-pds">'</span>ember_index<span class="pl-pds">'</span></span>,
+)</pre></div>
+</li>
+<li>
+<p>Register Ember application at <code>urls.py</code> with <a href="http://redis.io">redis</a>'s adapter:</p>
+
+<div class="highlight highlight-python"><pre><span class="pl-k">from</span> ember_index.adapters <span class="pl-k">import</span> RedisAdapter
+<span class="pl-k">from</span> ember_index.conf.urls <span class="pl-k">import</span> index
+
+urlpatterns <span class="pl-k">=</span> [
+     index(<span class="pl-s"><span class="pl-k">r</span><span class="pl-pds">'</span><span class="pl-k">^</span><span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>my-app<span class="pl-pds">'</span></span>, RedisAdapter()),
+]</pre></div>
+
+<p><em>All keyword arguments will be passed into the <a href="https://redis-py.readthedocs.org/en/latest/#redis.StrictRedis">StrictRedis</a> object on initialization.</em></p>
+</li>
+</ol>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Django Ember Index is available under the MIT license. See the LICENSE file for more info.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/bobisjan">bobisjan</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
