@@ -14,9 +14,9 @@ setup(
     include_package_data=True,
     test_suite='tests.runner.run_tests',
     license='MIT License',
-    description='A Django app to serve an Ember index files.',
+    description='A Django app to serve Ember index files.',
     long_description=README,
-    url='http://bobisjan.github.io/django-ember-index',
+    url='http://bobisjan.com/django-ember-index',
     author='Jan Bobisud',
     author_email='me@bobisjan.com',
     classifiers=[
