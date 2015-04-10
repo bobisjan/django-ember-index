@@ -1,8 +1,8 @@
 # Django Ember Index
 
-[![Build Status](https://travis-ci.org/bobisjan/django-ember-index.svg?branch=master)](https://travis-ci.org/bobisjan/django-ember-index) [![Coverage Status](https://coveralls.io/repos/bobisjan/django-ember-index/badge.svg)](https://coveralls.io/r/bobisjan/django-ember-index)
+[![Build Status](https://travis-ci.org/bobisjan/django-ember-index.svg?branch=master)](https://travis-ci.org/bobisjan/django-ember-index) [![Coverage Status](https://coveralls.io/repos/bobisjan/django-ember-index/badge.svg?branch=master)](https://coveralls.io/r/bobisjan/django-ember-index)
 
-A Django app to serve an [Ember](http://emberjs.com) index files deployed with [ember-cli-deploy](https://github.com/ember-cli/ember-cli-deploy).
+A Django app to serve [Ember](http://emberjs.com) index files deployed with [ember-cli-deploy](https://github.com/ember-cli/ember-cli-deploy).
 
 ## Installation
 
@@ -12,8 +12,8 @@ A Django app to serve an [Ember](http://emberjs.com) index files deployed with [
 
   ```python
   INSTALLED_APPS = (
-       ...
-       'ember_index',
+      ...
+      'ember_index',
   )
   ```
 
@@ -24,7 +24,7 @@ A Django app to serve an [Ember](http://emberjs.com) index files deployed with [
   from ember_index.conf.urls import index
 
   urlpatterns = [
-       index(r'^', 'my-app', RedisAdapter()),
+      index(r'^', 'my-app', RedisAdapter(host='localhost')),
   ]
   ```
 
