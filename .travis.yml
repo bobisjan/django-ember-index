@@ -10,8 +10,8 @@ env:
   - DJANGO_VERSION=1.8
 
 install:
-  - pip install -q Django==$DJANGO_VERSION --use-mirrors
-  - pip install -q -r requirements.txt --use-mirrors
+  - pip install -q Django==$DJANGO_VERSION
+  - pip install -q -r requirements.txt
   - pip install coveralls
 
 script:
