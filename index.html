@@ -1,35 +1,28 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Django Ember Index by bobisjan</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta charset="UTF-8">
+    <title>django-ember-index by bobisjan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>django-ember-index</h1>
-        <p>A Django app to serve Ember index files</p>
+    <section class="page-header">
+      <h1 class="project-name">django-ember-index</h1>
+      <h2 class="project-tagline">A Django app to serve an Ember index files</h2>
+      <a href="https://github.com/bobisjan/django-ember-index" class="btn">View on GitHub</a>
+      <a href="https://github.com/bobisjan/django-ember-index/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/bobisjan/django-ember-index/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-        <p class="view"><a href="https://github.com/bobisjan/django-ember-index">View the Project on GitHub <small>bobisjan/django-ember-index</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/bobisjan/django-ember-index/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/bobisjan/django-ember-index/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/bobisjan/django-ember-index">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
+    <section class="main-content">
+      <h1>
 <a id="django-ember-index" class="anchor" href="#django-ember-index" aria-hidden="true"><span class="octicon octicon-link"></span></a>Django Ember Index</h1>
+
+<p><a href="https://travis-ci.org/bobisjan/django-ember-index"><img src="https://travis-ci.org/bobisjan/django-ember-index.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/r/bobisjan/django-ember-index"><img src="https://coveralls.io/repos/bobisjan/django-ember-index/badge.svg?branch=master" alt="Coverage Status"></a></p>
 
 <p>A Django app to serve <a href="http://emberjs.com">Ember</a> index files deployed with <a href="https://github.com/ember-cli/ember-cli-deploy">ember-cli-deploy</a>.</p>
 
@@ -46,6 +39,12 @@
     <span class="pl-s"><span class="pl-pds">'</span>ember_index<span class="pl-pds">'</span></span>,
 )</pre></div>
 </li>
+</ol>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<ol>
 <li>
 <p>Register Ember application at <code>urls.py</code> with <a href="http://redis.io">redis</a>'s adapter:</p>
 
@@ -53,10 +52,20 @@
 <span class="pl-k">from</span> ember_index.conf.urls <span class="pl-k">import</span> index
 
 urlpatterns <span class="pl-k">=</span> [
-    index(<span class="pl-s"><span class="pl-k">r</span><span class="pl-pds">'</span><span class="pl-k">^</span><span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>my-app<span class="pl-pds">'</span></span>, RedisAdapter(host<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>localhost<span class="pl-pds">'</span></span>)),
+    index(<span class="pl-s"><span class="pl-k">r</span><span class="pl-pds">'</span><span class="pl-k">^</span><span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>my-app<span class="pl-pds">'</span></span>, RedisAdapter(<span class="pl-smi">host</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>localhost<span class="pl-pds">'</span></span>)),
 ]</pre></div>
 
 <p><em>All keyword arguments will be passed into the <a href="https://redis-py.readthedocs.org/en/latest/#redis.StrictRedis">StrictRedis</a> object on initialization.</em></p>
+</li>
+<li>
+<p>Access application at:</p>
+
+<ul>
+<li>
+<code>/</code> with current revision,</li>
+<li>
+<code>/r/ed54cda</code> with specific revision.</li>
+</ul>
 </li>
 </ol>
 
@@ -64,13 +73,16 @@ urlpatterns <span class="pl-k">=</span> [
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>Django Ember Index is available under the MIT license. See the LICENSE file for more info.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/bobisjan">bobisjan</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/bobisjan/django-ember-index">django-ember-index</a> is maintained by <a href="https://github.com/bobisjan">bobisjan</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+
+    </section>
+
+  
   </body>
 </html>
+
