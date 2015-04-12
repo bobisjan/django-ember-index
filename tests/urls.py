@@ -1,8 +1,7 @@
+from ember_index.adapters import RedisAdapter
 from ember_index.conf.urls import index
-
-from fixtures import Adapter
 
 
 urlpatterns = [
-    index(r'^', 'my-app', Adapter()),
+    index(r'^', 'my-app', RedisAdapter()),
 ]
