@@ -1,10 +1,7 @@
-from django.test import Client, SimpleTestCase
+from . import RedisTestCase
 
 
-class HeadIndexTestCase(SimpleTestCase):
-
-    def setUp(self):
-        self.client = Client()
+class HeadIndexTestCase(RedisTestCase):
 
     def test_should_head_current_index(self):
         self.assertHead('/', 200)

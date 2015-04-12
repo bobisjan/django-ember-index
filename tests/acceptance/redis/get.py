@@ -1,10 +1,7 @@
-from django.test import Client, SimpleTestCase
+from . import RedisTestCase
 
 
-class GetIndexTestCase(SimpleTestCase):
-
-    def setUp(self):
-        self.client = Client()
+class GetIndexTestCase(RedisTestCase):
 
     def test_should_get_current_index(self):
         self.assertGet('/', 200, '7fabf72')
