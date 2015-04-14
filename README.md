@@ -1,6 +1,6 @@
 # Django Ember Index
 
-[![Build Status](https://travis-ci.org/bobisjan/django-ember-index.svg?branch=master)](https://travis-ci.org/bobisjan/django-ember-index) [![Code Climate](https://codeclimate.com/github/bobisjan/django-ember-index/badges/gpa.svg)](https://codeclimate.com/github/bobisjan/django-ember-index) [![Coverage Status](https://coveralls.io/repos/bobisjan/django-ember-index/badge.svg?branch=master)](https://coveralls.io/r/bobisjan/django-ember-index)
+[![Build Status](https://travis-ci.org/bobisjan/django-ember-index.svg?branch=master)](https://travis-ci.org/bobisjan/django-ember-index) [![Code Climate](https://codeclimate.com/github/bobisjan/django-ember-index/badges/gpa.svg)](https://codeclimate.com/github/bobisjan/django-ember-index) [![Coverage Status](https://coveralls.io/repos/bobisjan/django-ember-index/badge.svg?branch=master)](https://coveralls.io/r/bobisjan/django-ember-index) [![Requirements Status](https://requires.io/github/bobisjan/django-ember-index/requirements.svg?branch=master)](https://requires.io/github/bobisjan/django-ember-index/requirements/?branch=master)
 
 A Django app to serve [Ember](http://emberjs.com) index files deployed with [ember-cli-deploy](https://github.com/ember-cli/ember-cli-deploy).
 
