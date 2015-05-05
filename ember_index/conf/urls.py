@@ -1,4 +1,5 @@
 from django.conf.urls import include, url
+from django.views.generic import RedirectView
 
 from ember_index.views import IndexView
 
@@ -6,6 +7,7 @@ from ember_index.views import IndexView
 def index(regex, manifest, adapter, view_class=IndexView):
     view = view_class.as_view(manifest=manifest, adapter=adapter)
     return url(regex, include([
+        url(r'^r/current', RedirectView.as_view(pattern_name='current-index', permanent=False)),
         url(r'^r/(?P<revision>\w+)', view),
-        url(r'^', view)
+        url(r'^', view, name='current-index')
     ]))
