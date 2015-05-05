@@ -17,6 +17,11 @@ class GetIndexTestCase(RedisTestCase):
         self.assertGet('/r/aaaaaa/', 404)
         self.assertGet('/r/aaaaaa/abc/def', 404)
 
+    def test_should_redirect_to_current_index(self):
+        self.assertRedirect('/r/current')
+        self.assertRedirect('/r/current/')
+        self.assertRedirect('/r/current/abc/def')
+
     def assertGet(self, url, status_code, revision=None, current=False):
         response = self.client.get(url)
 
@@ -33,3 +38,9 @@ class GetIndexTestCase(RedisTestCase):
         if not current:
             base_url = '%7B%22baseURL%22%3A%22/r/{0}/%22%7D'.format(revision)
         self.assertTrue(base_url in response.content.decode('utf-8'))
+
+    def assertRedirect(self, url):
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['Location'], 'http://testserver/')
