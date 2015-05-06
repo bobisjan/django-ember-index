@@ -19,23 +19,29 @@ A Django app to serve [Ember](http://emberjs.com) index files deployed with [emb
 
 ## Usage
 
-1. Register Ember application at `urls.py` with [redis](http://redis.io)'s adapter:
+1. Register Ember application(s) at `urls.py` with [redis](http://redis.io)'s adapter:
 
   ```python
   from ember_index.adapters import RedisAdapter
   from ember_index.conf.urls import index
 
+  adapter = RedisAdapter(host='localhost')
+
   urlpatterns = [
-      index(r'^', 'my-app', RedisAdapter(host='localhost')),
+      index(r'^other-app/', 'other-app', adapter),
+      index(r'^', 'my-app', adapter),
   ]
   ```
 
   _All keyword arguments will be passed into the [StrictRedis](https://redis-py.readthedocs.org/en/latest/#redis.StrictRedis) object on initialization._
 
-2. Access application at:
+2. Access application(s) at:
 
-  - `/` with current revision,
-  - `/r/ed54cda` with specific revision.
+  - `/` with current revision of `my-app`,
+  - `/r/ed54cda/` with specific revision of `my-app`,
+  - `/other-app/` with current revision of `other-app`,
+  - `/other-app/r/ed54cda/` with specific revision of `other-app`.
+
 
 ## License
 
