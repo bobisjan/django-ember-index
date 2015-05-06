@@ -7,7 +7,7 @@ from ember_index.views import IndexView
 def index(regex, manifest, adapter, view_class=IndexView):
     view = view_class.as_view(manifest=manifest, adapter=adapter)
     return url(regex, include([
-        url(r'^r/current', RedirectView.as_view(pattern_name='current-index', permanent=False)),
+        url(r'^r/current', RedirectView.as_view(pattern_name=manifest, permanent=False)),
         url(r'^r/(?P<revision>\w+)', view),
-        url(r'^', view, name='current-index')
+        url(r'^', view, name=manifest)
     ]))
