@@ -28,7 +28,7 @@ A Django app to serve [Ember](http://emberjs.com) index files deployed with [emb
   adapter = RedisAdapter(host='localhost')
 
   urlpatterns = [
-      index(r'^other-app/', 'other-app', adapter),
+      index(r'^other/', 'other-app', adapter, '/other/'),
       index(r'^', 'my-app', adapter),
   ]
   ```
@@ -39,8 +39,8 @@ A Django app to serve [Ember](http://emberjs.com) index files deployed with [emb
 
   - `/` with current revision of `my-app`,
   - `/r/ed54cda/` with specific revision of `my-app`,
-  - `/other-app/` with current revision of `other-app`,
-  - `/other-app/r/ed54cda/` with specific revision of `other-app`.
+  - `/other/` with current revision of `other-app`,
+  - `/other/r/ed54cda/` with specific revision of `other-app`.
 
 
 ## License

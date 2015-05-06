@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.views.generic import View
 
-from ember_index.utils import extend_base_url
+from ember_index.utils import replace_base_url
 
 
 class IndexView(View):
@@ -10,6 +10,7 @@ class IndexView(View):
 
     manifest = None
     adapter = None
+    path = '/'
 
     def get(self, request, revision='current'):
         index_key = self.index_key(revision)
@@ -18,7 +19,7 @@ class IndexView(View):
         if not index:
             return self.index_not_found(revision)
 
-        index = self.process_index(index, revision)
+        index = self.process_index(index, revision, self.path)
         return self.index_response(index)
 
     def head(self, request, revision='current'):
@@ -36,5 +37,5 @@ class IndexView(View):
     def index_response(self, index):
         return HttpResponse(index)
 
-    def process_index(self, index, revision):
-        return extend_base_url(index, revision)
+    def process_index(self, index, revision, path):
+        return replace_base_url(index, revision, path)
