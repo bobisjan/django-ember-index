@@ -5,7 +5,7 @@ class GetIndexTestCase(RedisTestCase):
 
     base_url = {
         'my-app': '/',
-        'other-app': '/other-app/'
+        'other-app': '/other/'
     }
 
     def test_should_get_current_index(self):
@@ -13,36 +13,36 @@ class GetIndexTestCase(RedisTestCase):
         self.assertGet('/abc/def', 'my-app', '7fabf72', True)
         self.assertGet('/#/abc/def', 'my-app', '7fabf72', True)
 
-        self.assertGet('/other-app/', 'other-app', '8fabf72', True)
-        self.assertGet('/other-app/abc/def', 'other-app', '8fabf72', True)
-        self.assertGet('/other-app/#/abc/def', 'other-app', '8fabf72', True)
+        self.assertGet('/other/', 'other-app', '8fabf72', True)
+        self.assertGet('/other/abc/def', 'other-app', '8fabf72', True)
+        self.assertGet('/other/#/abc/def', 'other-app', '8fabf72', True)
 
     def test_should_get_specific_index(self):
         self.assertGet('/r/d696248/', 'my-app', 'd696248')
         self.assertGet('/r/d696248/abc/def', 'my-app', 'd696248')
         self.assertGet('/r/d696248/#/abc/def', 'my-app', 'd696248')
 
-        self.assertGet('/other-app/r/e696248/', 'other-app', 'e696248')
-        self.assertGet('/other-app/r/e696248/abc/def', 'other-app', 'e696248')
-        self.assertGet('/other-app/r/e696248/#/abc/def', 'other-app', 'e696248')
+        self.assertGet('/other/r/e696248/', 'other-app', 'e696248')
+        self.assertGet('/other/r/e696248/abc/def', 'other-app', 'e696248')
+        self.assertGet('/other/r/e696248/#/abc/def', 'other-app', 'e696248')
 
     def test_should_get_not_found_for_non_existing_index(self):
         self.assertNotFound('/r/aaaaaa/')
         self.assertNotFound('/r/aaaaaa/abc/def')
         self.assertNotFound('/r/aaaaaa/#/abc/def')
 
-        self.assertNotFound('/other-app/r/aaaaaa/')
-        self.assertNotFound('/other-app/r/aaaaaa/abc/def')
-        self.assertNotFound('/other-app/r/aaaaaa/#/abc/def')
+        self.assertNotFound('/other/r/aaaaaa/')
+        self.assertNotFound('/other/r/aaaaaa/abc/def')
+        self.assertNotFound('/other/r/aaaaaa/#/abc/def')
 
     def test_should_redirect_to_current_index(self):
         self.assertRedirect('/r/current/', 'my-app')
         self.assertRedirect('/r/current/abc/def', 'my-app')
         self.assertRedirect('/r/current/#abc/def', 'my-app')
 
-        self.assertRedirect('/other-app/r/current/', 'other-app')
-        self.assertRedirect('/other-app/r/current/abc/def', 'other-app')
-        self.assertRedirect('/other-app/r/current/#/abc/def', 'other-app')
+        self.assertRedirect('/other/r/current/', 'other-app')
+        self.assertRedirect('/other/r/current/abc/def', 'other-app')
+        self.assertRedirect('/other/r/current/#/abc/def', 'other-app')
 
     def assertGet(self, url, manifest, revision, current=False):
         response = self.client.get(url)
