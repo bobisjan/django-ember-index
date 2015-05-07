@@ -15,6 +15,7 @@ services:
 install:
   - pip install -q Django==$DJANGO_VERSION
   - pip install -q -r requirements.txt
+  - pip install -q -r requirements/development.txt
   - pip install coveralls
 
 script:
