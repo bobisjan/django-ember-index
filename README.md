@@ -33,6 +33,8 @@ A Django app to serve [Ember](http://emberjs.com) index files deployed with [emb
   ]
   ```
 
+  _The provided `regex` is used to set router's [rootUrl](http://emberjs.com/api/classes/Ember.Router.html#property_rootURL) by [replacing](https://github.com/bobisjan/django-ember-index/blob/master/ember_index/utils.py#L1) pregenerated [baseUrl](https://github.com/ember-cli/ember-cli/blob/18d377b264859548f41aba6c3ea2015b90978068/blueprints/app/files/config/environment.js#L7) environment configuration at index file._
+
   _All keyword arguments will be passed into the [StrictRedis](https://redis-py.readthedocs.org/en/latest/#redis.StrictRedis) object on initialization._
 
 2. Access application(s) at:
