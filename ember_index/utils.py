@@ -20,3 +20,6 @@ def base_url_for(path, revision):
     if revision == 'current':
         return path
     return '{0}r/{1}/'.format(path, revision)
+
+def path_for(regex):
+    return regex.replace('^', '/')
