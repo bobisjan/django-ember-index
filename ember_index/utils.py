@@ -8,8 +8,8 @@ def replace_base_url(index, revision, path):
 def range_for(index):
     base = 'baseURL%22%3A%22'
 
-    start = index.find(base) + len(base)
-    end = index.find('%22', start)
+    start = index.index(base) + len(base)
+    end = index.index('%22', start)
 
     return start, end
 
