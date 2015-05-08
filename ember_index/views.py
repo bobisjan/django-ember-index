@@ -19,7 +19,7 @@ class IndexView(View):
         if not index:
             return self.index_not_found(revision)
 
-        index = self.process_index(index, revision, self.path)
+        index = self.process_index(index, revision)
         return self.index_response(index)
 
     def head(self, request, revision='current'):
@@ -37,5 +37,5 @@ class IndexView(View):
     def index_response(self, index):
         return HttpResponse(index)
 
-    def process_index(self, index, revision, path):
-        return replace_base_url(index, revision, path)
+    def process_index(self, index, revision):
+        return replace_base_url(index, revision, self.path)
