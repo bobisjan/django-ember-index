@@ -1,8 +1,6 @@
 def replace_base_url(index, revision, path):
-    index = index.decode('utf-8')
-
-    start, end = range_for(index)
     base_url = base_url_for(path, revision)
+    start, end = range_for(index)
 
     return index[:start] + base_url + index[end:]
 
