@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.views.generic import View
 
-from ember_index.utils import replace_base_url
+from ember_index.utils import path_for, replace_base_url
 
 
 class IndexView(View):
@@ -15,7 +15,7 @@ class IndexView(View):
         http_method_names (list): A list of supported HTTP methods.
         manifest (string): A name of Ember application.
         adapter (object): An adapter for index provider.
-        path (string): A path from Ember application is served.
+        regex (string): A regex from Ember application is served.
 
     '''
 
@@ -23,7 +23,7 @@ class IndexView(View):
 
     manifest = None
     adapter = None
-    path = '/'
+    regex = None
 
     def get(self, request, revision='current'):
         '''Handle `GET` request for index of Ember application.
@@ -113,3 +113,7 @@ class IndexView(View):
 
         '''
         return replace_base_url(index, revision, self.path)
+
+    @property
+    def path(self):
+        return path_for(self.regex)

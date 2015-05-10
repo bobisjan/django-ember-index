@@ -1,7 +1,6 @@
 from django.conf.urls import include, url
 from django.views.generic import RedirectView
 
-from ember_index.utils import path_for
 from ember_index.views import IndexView
 
 
@@ -24,8 +23,7 @@ def index(regex, manifest, adapter, view_class=IndexView):
         An URL pattern for Ember application.
 
     '''
-    path = path_for(regex)
-    view = view_class.as_view(manifest=manifest, adapter=adapter, path=path)
+    view = view_class.as_view(manifest=manifest, adapter=adapter, regex=regex)
     redirect = RedirectView.as_view(pattern_name=manifest, permanent=False)
 
     return url(regex, include([
