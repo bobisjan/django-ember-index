@@ -1,8 +1,8 @@
 import os
 from setuptools import setup
 
-with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
-    README = readme.read()
+with open(os.path.join(os.path.dirname(__file__), 'DESCRIPTION.rst')) as description:
+    LONG_DESCRIPTION = description.read()
 
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
@@ -15,7 +15,7 @@ setup(
     test_suite='tests.runner.run_tests',
     license='MIT License',
     description='A Django app to serve Ember index files.',
-    long_description=README,
+    long_description=LONG_DESCRIPTION,
     url='http://bobisjan.com/django-ember-index',
     author='Jan Bobisud',
     author_email='me@bobisjan.com',
