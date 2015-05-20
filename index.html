@@ -48,8 +48,7 @@
 <li>
 <p>Register Ember application(s) at <code>urls.py</code> with <a href="http://redis.io">redis</a>'s adapter:</p>
 
-<div class="highlight highlight-python"><pre><span class="pl-k">from</span> ember_index.adapters <span class="pl-k">import</span> RedisAdapter
-<span class="pl-k">from</span> ember_index.conf.urls <span class="pl-k">import</span> index
+<div class="highlight highlight-python"><pre><span class="pl-k">from</span> ember_index <span class="pl-k">import</span> index, RedisAdapter
 
 adapter <span class="pl-k">=</span> RedisAdapter(<span class="pl-smi">host</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>localhost<span class="pl-pds">'</span></span>)
 
