@@ -55,6 +55,7 @@ def base_url_for(path, revision):
         return path
     return '{0}r/{1}/'.format(path, revision)
 
+
 def path_for(regex):
     '''Create path by replacing '^' with '/' in regex.
 

@@ -22,8 +22,7 @@ A Django app to serve [Ember](http://emberjs.com) index files deployed with [emb
 1. Register Ember application(s) at `urls.py` with [redis](http://redis.io)'s adapter:
 
   ```python
-  from ember_index.adapters import RedisAdapter
-  from ember_index.conf.urls import index
+  from ember_index import index, RedisAdapter
 
   adapter = RedisAdapter(host='localhost')
 
