@@ -1,5 +1,6 @@
 def replace_base_url(index, revision, path):
-    '''Replace base URL at environment configuration in index.
+    '''Replace base URL at environment configuration
+       and optionally at base tag in index.
 
     Keyword arguments:
         index (string): An index for requested revision.
@@ -14,30 +15,55 @@ def replace_base_url(index, revision, path):
 
     '''
     base_url = base_url_for(path, revision)
-    start, end = range_for(index)
+
+    index = replace_base_url_in_base_tag(index, base_url)
+    index = replace_base_url_in_meta_tag(index, base_url)
+
+    return index
+
+
+def replace_base_url_in_base_tag(index, base_url):
+    '''Replace base URL at base tag if present.
+
+    Keyword arguments:
+        index (string): An index for requested revision.
+        base_url (string): A base URL to replace.
+
+    Returns:
+        An index with replaced `href` attribute at `base` tag`.
+
+    '''
+    base = '<base href="'
+    start = index.find(base)
+
+    if start is -1:
+        return index
+
+    start += len(base)
+    end = index.index('"', start)
 
     return index[:start] + base_url + index[end:]
 
 
-def range_for(index):
-    '''Find start and end indices where base URL should be inserted.
+def replace_base_url_in_meta_tag(index, base_url):
+    '''Replace base URL at environment configuration in index.
 
     Keyword arguments:
-        index (string): An index to search through.
+        index (string): An index for requested revision.
+        base_url (string): A base URL to replace.
 
     Returns:
-        A tuple of start and end indices.
+        An index with replaced `baseURL` at environment configuration.
 
     Raises:
         ValueError: When `baseURL` can not be found in index.
 
     '''
     base = 'baseURL%22%3A%22'
-
     start = index.index(base) + len(base)
     end = index.index('%22', start)
 
-    return start, end
+    return index[:start] + base_url + index[end:]
 
 
 def base_url_for(path, revision):
