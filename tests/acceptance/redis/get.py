@@ -3,9 +3,15 @@ from . import RedisTestCase
 
 class GetIndexTestCase(RedisTestCase):
 
-    base_url = {
-        'my-app': '/',
-        'other-app': '/other/'
+    manifests = {
+        'my-app': {
+            'base_url': '/',
+            'base_tag': False
+        },
+        'other-app': {
+            'base_url': '/other/',
+            'base_tag': True
+        }
     }
 
     def test_should_get_current_index(self):
@@ -46,25 +52,50 @@ class GetIndexTestCase(RedisTestCase):
 
     def assertGet(self, url, manifest, revision, current=False):
         response = self.client.get(url)
+        content = response.content.decode('utf-8')
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'text/html; charset=utf-8')
 
         body = '<h1>{0}</h1><h2>{1}</h2>'.format(manifest, revision)
-        self.assertTrue(body in response.content.decode('utf-8'))
+        self.assertTrue(body in content)
+
+        manifest = self.manifests[manifest]
+        self.assertBaseUrlInBaseTag(manifest, revision, content, current)
+        self.assertBaseUrlInMetaTag(manifest, revision, content, current)
+
+    def assertBaseUrlInBaseTag(self, manifest, revision, content, current):
+        if not manifest['base_tag']:
+            return
+
+        base_tag = None
+
+        if current:
+            template = '<base href="{0}" />'
+            base_tag = template.format(manifest['base_url'])
+        else:
+            template = '<base href="{0}r/{1}/" />'
+            base_tag = template.format(manifest['base_url'], revision)
+
+        self.assertTrue(base_tag in content)
+
+    def assertBaseUrlInMetaTag(self, manifest, revision, content, current):
+        base_url = None
 
         if current:
             template = '%7B%22baseURL%22%3A%22{0}%22%7D'
-            base_url = template.format(self.base_url[manifest])
+            base_url = template.format(manifest['base_url'])
         else:
             template = '%7B%22baseURL%22%3A%22{0}r/{1}/%22%7D'
-            base_url = template.format(self.base_url[manifest], revision)
+            base_url = template.format(manifest['base_url'], revision)
 
-        self.assertTrue(base_url in response.content.decode('utf-8'))
+        self.assertTrue(base_url in content)
 
     def assertRedirect(self, url, manifest):
         response = self.client.get(url)
-        location = 'http://testserver{0}'.format(self.base_url[manifest])
+
+        manifest = self.manifests[manifest]
+        location = 'http://testserver{0}'.format(manifest['base_url'])
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['Location'], location)

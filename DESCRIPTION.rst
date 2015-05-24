@@ -37,7 +37,7 @@ Usage
         index(r'^', 'my-app', adapter),
     ]
 
-  The provided ``regex`` is used to set router’s `rootURL`_ by `replacing`_ pregenerated `baseURL`_ environment configuration at index file.
+  The provided ``regex`` is used to set router’s `rootURL`_ by `replacing`_ pregenerated `baseURL`_ environment configuration at index file. Note that `storeConfigInMeta`_ must be set to ``true``, otherwise an exception is raised. If ``base`` tag is present in index file, then value of ``href`` attribute will be replaced too.
 
   All adapter’s keyword arguments will be passed into the `StrictRedis`_ object on initialization.
 
@@ -60,6 +60,7 @@ file for more info.
 .. _rootURL: http://emberjs.com/api/classes/Ember.Router.html#property_rootURL
 .. _replacing: https://github.com/bobisjan/django-ember-index/blob/master/ember_index/utils.py#L1
 .. _baseURL: https://github.com/ember-cli/ember-cli/blob/18d377b264859548f41aba6c3ea2015b90978068/blueprints/app/files/config/environment.js#L7
+.. _storeConfigInMeta: https://github.com/ember-cli/ember-cli/blob/master/lib/broccoli/ember-app.js#L141
 .. _StrictRedis: https://redis-py.readthedocs.org/en/latest/#redis.StrictRedis
 
 .. |Build Status| image:: https://travis-ci.org/bobisjan/django-ember-index.svg?branch=master
