@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http import HttpResponse, HttpResponseNotFound
 from django.views.generic import View
 
@@ -16,6 +17,7 @@ class IndexView(View):
         manifest (string): A name of Ember application.
         adapter (object): An adapter for index provider.
         regex (string): A regex from Ember application is served.
+        request: (django.http.HttpRequest): An instance of the current request.
 
     '''
 
@@ -24,6 +26,8 @@ class IndexView(View):
     manifest = None
     adapter = None
     regex = None
+
+    request = None
 
     def get(self, request, revision='current'):
         '''Handle `GET` request for index of Ember application.
@@ -38,6 +42,8 @@ class IndexView(View):
             If no index is found then an instance of `django.http.HttpResponseNotFound` is returned.
 
         '''
+        self.request = request
+
         index_key = self.index_key(revision)
         index = self.adapter.index_for(index_key)
 
@@ -104,6 +110,8 @@ class IndexView(View):
 
         By default it replaces `baseURL` in environment configuration.
 
+        If CSRF protection is enabled, then `meta` tag with CSRF token will be provided.
+
         Keyword arguments:
             index (string): An index for requested revision.
             revision (string): A requested revision.
@@ -112,8 +120,39 @@ class IndexView(View):
             A processed index.
 
         '''
-        return replace_base_url(index, revision, self.path)
+        index = replace_base_url(index, revision, self.path)
+
+        if self.is_csrf_protection_enabled:
+            index = self.append_meta_with_csrf_token(index)
+
+        return index
 
     @property
     def path(self):
         return path_for(self.regex)
+
+    @property
+    def is_csrf_protection_enabled(self):
+        return 'django.middleware.csrf.CsrfViewMiddleware' in settings.MIDDLEWARE_CLASSES
+
+    @property
+    def csrf_meta_name(self):
+        return 'X-CSRFToken'  # HTTP_X_CSRFTOKEN
+
+    def append_meta_with_csrf_token(self, index):
+        '''Return index with CSRF token in meta tag named `X-CSRFToken`.
+
+        Keyword arguments:
+            index (string): An index for requested revision.
+
+        Returns:
+            An index with CSRF token.
+
+        '''
+        from django.middleware.csrf import get_token
+
+        start = index.index('</head>')
+        meta = '<meta name="{0}" content="{1}">'
+        meta = meta.format(self.csrf_meta_name, get_token(self.request))
+
+        return index[:start] + meta + index[start:]

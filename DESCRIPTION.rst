@@ -37,7 +37,11 @@ Usage
         index(r'^', 'my-app', adapter),
     ]
 
-  The provided ``regex`` is used to set router’s `rootURL`_ by `replacing`_ pregenerated `baseURL`_ environment configuration at index file. Note that `storeConfigInMeta`_ must be set to ``true``, otherwise an exception is raised. If ``base`` tag is present in index file, then value of ``href`` attribute will be replaced too.
+  The provided ``regex`` is used to set router’s `rootURL`_ by `replacing`_ pregenerated `baseURL`_ environment configuration at index file.
+
+  Note that `storeConfigInMeta`_ must be set to ``true``, otherwise an exception is raised. If ``base`` tag is present in index file, then value of ``href`` attribute will be replaced too.
+
+  If CSRF protection is enabled, then ``meta`` tag named ``X-CSRFToken`` with generated token will be provided.
 
   All adapter’s keyword arguments will be passed into the `StrictRedis`_ object on initialization.
 
