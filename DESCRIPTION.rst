@@ -41,7 +41,7 @@ Usage
 
   Note that `storeConfigInMeta`_ must be set to ``true``, otherwise an exception is raised. If ``base`` tag is present in index file, then value of ``href`` attribute will be replaced too.
 
-  If CSRF protection is enabled, then ``meta`` tag named ``X-CSRFToken`` with generated token will be provided.
+  If CSRF protection is enabled, then ``meta`` tag named ``X-CSRFToken`` with generated token will be provided. You can use `Ember Django CSRF`_ to enable protection on the Ember side.
 
   All adapter’s keyword arguments will be passed into the `StrictRedis`_ object on initialization.
 
@@ -65,6 +65,7 @@ file for more info.
 .. _replacing: https://github.com/bobisjan/django-ember-index/blob/master/ember_index/utils.py#L1
 .. _baseURL: https://github.com/ember-cli/ember-cli/blob/18d377b264859548f41aba6c3ea2015b90978068/blueprints/app/files/config/environment.js#L7
 .. _storeConfigInMeta: https://github.com/ember-cli/ember-cli/blob/master/lib/broccoli/ember-app.js#L141
+.. _Ember Django CSRF: http://bobisjan.com/ember-django-csrf/
 .. _StrictRedis: https://redis-py.readthedocs.org/en/latest/#redis.StrictRedis
 
 .. |Build Status| image:: https://travis-ci.org/bobisjan/django-ember-index.svg?branch=master
