@@ -32,7 +32,11 @@ A Django app to serve [Ember](http://emberjs.com) index files deployed with [emb
   ]
   ```
 
-  _The provided `regex` is used to set router's [rootURL](http://emberjs.com/api/classes/Ember.Router.html#property_rootURL) by [replacing](https://github.com/bobisjan/django-ember-index/blob/master/ember_index/utils.py#L1) pregenerated [baseURL](https://github.com/ember-cli/ember-cli/blob/18d377b264859548f41aba6c3ea2015b90978068/blueprints/app/files/config/environment.js#L7) environment configuration at index file. Note that [storeConfigInMeta](https://github.com/ember-cli/ember-cli/blob/master/lib/broccoli/ember-app.js#L141) must be set to `true`, otherwise an exception is raised. If `base` tag is present in index file, then value of `href` attribute will be replaced too._
+  _The provided `regex` is used to set router's [rootURL](http://emberjs.com/api/classes/Ember.Router.html#property_rootURL) by [replacing](https://github.com/bobisjan/django-ember-index/blob/master/ember_index/utils.py#L1) pregenerated [baseURL](https://github.com/ember-cli/ember-cli/blob/18d377b264859548f41aba6c3ea2015b90978068/blueprints/app/files/config/environment.js#L7) environment configuration at index file._
+
+  _Note that [storeConfigInMeta](https://github.com/ember-cli/ember-cli/blob/master/lib/broccoli/ember-app.js#L141) must be set to `true`, otherwise an exception is raised. If `base` tag is present in index file, then value of `href` attribute will be replaced too._
+
+  _If CSRF protection is enabled, then `meta` tag named `X-CSRFToken` with generated token will be provided. You can use [Ember Django CSRF](http://bobisjan.com/ember-django-csrf/) to enable protection on the Ember side._
 
   _All adapter's keyword arguments will be passed into the [StrictRedis](https://redis-py.readthedocs.org/en/latest/#redis.StrictRedis) object on initialization._
 

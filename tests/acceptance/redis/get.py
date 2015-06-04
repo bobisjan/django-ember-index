@@ -1,7 +1,11 @@
+import re
+
 from . import RedisTestCase
 
 
 class GetIndexTestCase(RedisTestCase):
+
+    csrf_pattern = re.compile(r'<meta name="X-CSRFToken" content="\w{32}">')
 
     manifests = {
         'my-app': {
@@ -50,7 +54,17 @@ class GetIndexTestCase(RedisTestCase):
         self.assertRedirect('/other/r/current/abc/def', 'other-app')
         self.assertRedirect('/other/r/current/#/abc/def', 'other-app')
 
-    def assertGet(self, url, manifest, revision, current=False):
+    def test_should_get_without_csrf_token(self):
+        with self.settings(MIDDLEWARE_CLASSES=[]):
+            self.assertGet('/r/d696248/', 'my-app', 'd696248', csrf=False)
+            self.assertGet('/r/d696248/abc/def', 'my-app', 'd696248', csrf=False)
+            self.assertGet('/r/d696248/#/abc/def', 'my-app', 'd696248', csrf=False)
+
+            self.assertGet('/other/r/e696248/', 'other-app', 'e696248', csrf=False)
+            self.assertGet('/other/r/e696248/abc/def', 'other-app', 'e696248', csrf=False)
+            self.assertGet('/other/r/e696248/#/abc/def', 'other-app', 'e696248', csrf=False)
+
+    def assertGet(self, url, manifest, revision, current=False, csrf=True):
         response = self.client.get(url)
         content = response.content.decode('utf-8')
 
@@ -63,6 +77,7 @@ class GetIndexTestCase(RedisTestCase):
         manifest = self.manifests[manifest]
         self.assertBaseUrlInBaseTag(manifest, revision, content, current)
         self.assertBaseUrlInMetaTag(manifest, revision, content, current)
+        self.assertCsrfTokenInMetaTag(content, csrf)
 
     def assertBaseUrlInBaseTag(self, manifest, revision, content, current):
         if not manifest['base_tag']:
@@ -90,6 +105,10 @@ class GetIndexTestCase(RedisTestCase):
             base_url = template.format(manifest['base_url'], revision)
 
         self.assertTrue(base_url in content)
+
+    def assertCsrfTokenInMetaTag(self, content, required=True):
+        match = self.csrf_pattern.search(content)
+        self.assertEqual(required, bool(match))
 
     def assertRedirect(self, url, manifest):
         response = self.client.get(url)
