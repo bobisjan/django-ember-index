@@ -65,7 +65,7 @@ file for more info.
 .. _replacing: https://github.com/bobisjan/django-ember-index/blob/master/ember_index/utils.py#L1
 .. _baseURL: https://github.com/ember-cli/ember-cli/blob/18d377b264859548f41aba6c3ea2015b90978068/blueprints/app/files/config/environment.js#L7
 .. _storeConfigInMeta: https://github.com/ember-cli/ember-cli/blob/master/lib/broccoli/ember-app.js#L141
-.. _Ember Django CSRF: http://bobisjan.com/ember-django-csrf/
+.. _Ember Django CSRF: http://emberobserver.com/addons/ember-django-csrf
 .. _StrictRedis: https://redis-py.readthedocs.org/en/latest/#redis.StrictRedis
 
 .. |Build Status| image:: https://travis-ci.org/bobisjan/django-ember-index.svg?branch=master

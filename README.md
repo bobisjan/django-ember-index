@@ -36,7 +36,7 @@ A Django app to serve [Ember](http://emberjs.com) index files deployed with [emb
 
   _Note that [storeConfigInMeta](https://github.com/ember-cli/ember-cli/blob/master/lib/broccoli/ember-app.js#L141) must be set to `true`, otherwise an exception is raised. If `base` tag is present in index file, then value of `href` attribute will be replaced too._
 
-  _If CSRF protection is enabled, then `meta` tag named `X-CSRFToken` with generated token will be provided. You can use [Ember Django CSRF](http://bobisjan.com/ember-django-csrf/) to enable protection on the Ember side._
+  _If CSRF protection is enabled, then `meta` tag named `X-CSRFToken` with generated token will be provided. You can use [Ember Django CSRF](http://emberobserver.com/addons/ember-django-csrf) to enable protection on the Ember side._
 
   _All adapter's keyword arguments will be passed into the [StrictRedis](https://redis-py.readthedocs.org/en/latest/#redis.StrictRedis) object on initialization._
 
